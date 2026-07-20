@@ -1,0 +1,34 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://help.activityhero.com/can-i-sync-activityhero-registrations-to-my-own-database ,
+  https://help.activityhero.com/can-i-sync-my-activity-schedules-into-activityhero
+description: >-
+  ActivityHero's provider integration (Registration API and Schedule API) does
+  not use API keys, OAuth, or bearer tokens for its request/response surface.
+  Instead, webhook payloads are authenticated with an HMAC-SHA256 signature so
+  the receiver can verify the message originated from ActivityHero (and,
+  symmetrically, so ActivityHero can verify inbound schedule syncs).
+summary:
+  types:
+    - signature
+schemes:
+  - name: hmacSignature
+    type: signature
+    algorithm: HMAC-SHA256
+    header: Signature
+    message: '"providerID_timestamp" (provider ID and request timestamp joined by an underscore)'
+    secret_location: >-
+      A per-provider secret key found in the Registration API dashboard
+      section (Manage Listing > API).
+    verification: >-
+      The receiver recomputes HMAC-SHA256 over "providerID_timestamp" using the
+      shared secret and compares it to the Signature header.
+    reference: https://hookdeck.com/webhooks/guides/how-to-implement-sha256-webhook-signature-verification
+    sources:
+      - https://help.activityhero.com/can-i-sync-activityhero-registrations-to-my-own-database
+      - https://help.activityhero.com/can-i-sync-my-activity-schedules-into-activityhero
+docs: https://help.activityhero.com/api
+notes:
+  - No OAuth2 or OpenID Connect flow is published.
+  - No API-key header is used; trust is established via the shared HMAC secret and the Signature header.
