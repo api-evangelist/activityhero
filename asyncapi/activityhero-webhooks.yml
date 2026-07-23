@@ -1,0 +1,94 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://help.activityhero.com/api ,
+  https://help.activityhero.com/can-i-sync-activityhero-registrations-to-my-own-database ,
+  https://help.activityhero.com/can-i-sync-my-activity-schedules-into-activityhero ,
+  https://help.activityhero.com/how-do-i-use-the-activityhero-registration-api-with-zapier
+description: >-
+  ActivityHero exposes its provider-facing integration surface as outbound
+  webhooks rather than an inbound REST API. Providers configure a destination
+  URL under "Manage Listing > API" and ActivityHero POSTs signed JSON payloads
+  when registrations or schedules change. This is a Webhooks catalog derived
+  from the published help-center API articles; ActivityHero does not publish an
+  AsyncAPI or OpenAPI document, so no formal spec is captured here.
+provider: ActivityHero
+docs: https://help.activityhero.com/api
+transport: HTTPS POST (webhook / catch-hook)
+content_type: application/json
+delivery_headers:
+  Accept: application/json
+  Content-Type: application/json
+  Signature: HMAC-SHA256 signature (see authentication/activityhero-authentication.yml)
+signing:
+  algorithm: HMAC-SHA256
+  message: '"providerID_timestamp"'
+  secret_location: Registration API dashboard section (Manage Listing > API)
+  header: Signature
+  reference: https://hookdeck.com/webhooks/guides/how-to-implement-sha256-webhook-signature-verification
+webhooks:
+  - name: registration.changed
+    summary: Fires when a registration is added, updated, or cancelled for one of the provider's activities.
+    direction: outbound (ActivityHero -> provider endpoint)
+    source_article: https://help.activityhero.com/can-i-sync-activityhero-registrations-to-my-own-database
+    payload:
+      envelope:
+        action: enrolled | update | cancelled
+        provider_id: ActivityHero provider identifier
+        timestamp: unix/second timestamp used in the signature
+        data: array of registration objects
+      registration_fields:
+        - registration_id
+        - activity_schedule_id
+        - external_schedule_id
+        - activity_name
+        - session_info
+        - amount
+        - discount_amt
+        - enrollment_status
+        - timestamps
+      participant_fields:
+        - full_name
+        - first_name
+        - last_name
+        - dob
+        - grade
+        - gender
+        - school_name
+        - allergies
+        - medical_condition
+      guardian_fields:
+        - parents (name, cell, email, address)
+        - authorized_contacts (name, cell, email, address)
+      medical_fields:
+        - hospital_name
+        - physician_name
+        - physician_phone
+        - insurance_company
+      additional_fields:
+        - emergency_contacts
+        - sibling_request
+        - special_request
+    zapier:
+      supported: true
+      mechanism: Paste a Zapier "Catch Raw Hook" (Built-in Webhooks) URL into the ActivityHero Registration API settings.
+      article: https://help.activityhero.com/how-do-i-use-the-activityhero-registration-api-with-zapier
+  - name: schedule.sync
+    summary: Keeps a provider's external activity schedules in sync with the ActivityHero database.
+    direction: outbound (provider system -> ActivityHero, signed the same way)
+    source_article: https://help.activityhero.com/can-i-sync-my-activity-schedules-into-activityhero
+    content_type: application/json
+    payload:
+      fields:
+        - activity_name
+        - location
+        - dates
+        - times
+        - pricing
+        - registration_details
+    limits:
+      max_sessions_per_call: 100
+      over_limit_behavior: Exceeding 100 sessions per API call returns an error; use manual CSV import for larger batches instead.
+notes:
+  - No inbound consumer base URL is published; the integration is webhook-based and configured per-provider in the ActivityHero dashboard.
+  - Field lists are transcribed from the published help-center articles; ActivityHero publishes no machine-readable schema.

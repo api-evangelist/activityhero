@@ -1,0 +1,32 @@
+generated: '2026-07-17'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for ActivityHero's
+  hosts. activityhero.com 301-redirects every /.well-known/ path to
+  www.activityhero.com, which returns 404 for each; business.activityhero.com
+  returns 404 directly. No discovery documents are published, so nothing was
+  saved verbatim. Status is the final HTTP code observed at fetch time.
+hosts:
+  - host: https://activityhero.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        note: 301 -> https://www.activityhero.com/.well-known/security.txt -> 404
+      - path: /.well-known/openid-configuration
+        status: 404
+        note: 301 redirect then 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        note: 301 redirect then 404
+      - path: /.well-known/api-catalog
+        status: 404
+        note: 301 redirect then 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        note: 301 redirect then 404
+  - host: https://business.activityhero.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404

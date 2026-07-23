@@ -1,0 +1,33 @@
+# ActivityHero
+
+> ActivityHero is a marketplace connecting families with kids' camps, classes, and enrichment activities — a one-stop shop to find top-rated summer camps, holiday camps, and after-school classes. It also provides registration and marketing software for activity providers (MarketingHero, registration software) and programs for school districts.
+
+ActivityHero does not publish a REST API or OpenAPI. Its provider integration surface is delivered as outbound, HMAC-SHA256-signed JSON webhooks configured per-provider under "Manage Listing > API". This file was generated from apis.yml and the repo's captured artifacts.
+
+## Integration (Webhooks)
+- [API help center](https://help.activityhero.com/api): Overview of ActivityHero's Registration API and Schedule API.
+- [Registration API](https://help.activityhero.com/can-i-sync-activityhero-registrations-to-my-own-database): Sync registrations to your own database via signed webhook POSTs (action = enrolled/update/cancelled).
+- [Schedule API](https://help.activityhero.com/can-i-sync-my-activity-schedules-into-activityhero): Keep external activity schedules in sync (JSON, max 100 sessions per call; CSV import for larger batches).
+- [Registration API with Zapier](https://help.activityhero.com/how-do-i-use-the-activityhero-registration-api-with-zapier): Catch registration webhooks with a Zapier "Catch Raw Hook".
+- Authentication: HMAC-SHA256 signature over "providerID_timestamp" in a Signature header (per-provider secret from the dashboard).
+
+## For Providers
+- [Provider platform (business)](https://business.activityhero.com/): Listing, marketing, and registration software for activity providers.
+- [Pricing](https://business.activityhero.com/pricing): MarketingHero (performance-based) and custom registration software.
+- [School districts](https://schools.activityhero.com/): Programs for school district partners.
+
+## For Families
+- [ActivityHero](https://activityhero.com): Search, compare, and register for kids' camps and classes.
+- [Help center](https://help.activityhero.com/): Support for families and providers.
+- [Blog](https://www.activityhero.com/blog/)
+
+## Legal
+- [Terms of Service](https://activityhero.com/pages/terms)
+- [Privacy Policy](https://activityhero.com/pages/privacy)
+
+## Repo artifacts
+- Webhooks catalog: asyncapi/activityhero-webhooks.yml
+- Authentication (HMAC-SHA256): authentication/activityhero-authentication.yml
+- Conventions: conventions/activityhero-conventions.yml
+- Well-known probe results: well-known/activityhero-well-known.yml
+- Domain security probe: security/activityhero-domain-security.yml

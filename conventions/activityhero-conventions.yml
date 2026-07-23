@@ -1,0 +1,45 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://help.activityhero.com/api and the linked Registration API / Schedule
+  API help-center articles. ActivityHero publishes no OpenAPI, so these
+  cross-cutting semantics are transcribed from the provider docs.
+description: >-
+  Cross-cutting semantics of ActivityHero's provider integration surface. The
+  surface is webhook-based rather than a request/response REST API, so several
+  conventional REST concerns (pagination, idempotency keys, sparse fields) do
+  not apply. What is documented: JSON payloads, HMAC-SHA256 message signing, an
+  action-typed event envelope, and a per-call batch ceiling.
+provider: ActivityHero
+docs: https://help.activityhero.com/api
+api_style: Outbound webhooks (HTTPS POST, JSON payloads); no inbound REST base URL published.
+authentication:
+  scheme: HMAC-SHA256 signature over "providerID_timestamp" in a Signature header
+  detail: authentication/activityhero-authentication.yml
+  docs: https://help.activityhero.com/can-i-sync-activityhero-registrations-to-my-own-database
+event_envelope:
+  action_field: action
+  action_values: [enrolled, update, cancelled]
+  identity_fields: [provider_id, timestamp]
+  payload_field: data (array of objects)
+  detail: asyncapi/activityhero-webhooks.yml
+serialization:
+  content_type: application/json
+  accept: application/json
+idempotency:
+  supported: false
+  note: No idempotency-key mechanism is documented; delivery is a signed POST per event.
+pagination:
+  supported: false
+  note: Not applicable to the webhook surface.
+batching:
+  schedule_sync_max_sessions_per_call: 100
+  over_limit_behavior: Returns an error; use manual CSV import for larger batches.
+versioning:
+  documented: false
+  note: No API version header or dated version scheme is published.
+rate_limit_signaling:
+  documented: false
+zapier:
+  supported: true
+  article: https://help.activityhero.com/how-do-i-use-the-activityhero-registration-api-with-zapier
