@@ -41,6 +41,15 @@ tags:
 - Classes
 - Marketplace
 - Registration
+- Webhook
+- Education
+tags_raw:
+- Company
+- Kids Activities
+- Camps
+- Classes
+- Marketplace
+- Registration
 - Webhooks
 - Education
 apis:
@@ -53,6 +62,10 @@ apis:
   humanURL: https://help.activityhero.com/api
   baseURL: https://www.activityhero.com
   tags:
+  - Webhook
+  - Registration
+  - Schedules
+  tags_raw:
   - Webhooks
   - Registration
   - Schedules
