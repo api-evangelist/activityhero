@@ -75,7 +75,7 @@ apis:
   tags:
   - Webhook
   - Registration
-  - Schedules
+  - Schedule
   tags_raw:
   - Webhooks
   - Registration
