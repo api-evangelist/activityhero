@@ -71,7 +71,6 @@ apis:
     ActivityHero and a provider's own systems (configured under Manage Listing >
     API; Zapier-compatible).
   humanURL: https://help.activityhero.com/api
-  baseURL: https://www.activityhero.com
   tags:
   - Webhook
   - Registration
