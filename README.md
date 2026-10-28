@@ -64,6 +64,95 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-ActivityHero is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+ActivityHero is an online marketplace connecting families with kids' camps, classes, and enrichment activities — a one-stop shop to find top-rated summer camps, holiday camps, and after-school classes near you across categories like art, science, sports, dance, and online programs. For activity providers it offers marketing and registration software (MarketingHero and custom registration software) plus programs for school districts. ActivityHero's developer surface is a provider integration built on outbound, HMAC-SHA256 signed JSON webhooks (a Registration API and a Schedule API) rather than a public REST API; it was surfaced as a portfolio company of 500 Global and enriched into the API Evangelist network from its published help-center docs.
 
-Backed by: 500-global — https://activityhero.com
+**Areas:** Company · Kids Activities · Camps · Classes · Marketplace · Registration · Webhook · Education
+
+## ActivityHero on APIs.io
+
+Everything profiled for ActivityHero is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/activityhero/](https://apis.io/providers/activityhero/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [ActivityHero Registration & Schedule Webhooks](https://apis.io/apis/activityhero/activityhero-registration-schedule-webhooks/) — ActivityHero's provider integration surface — outbound, HMAC-SHA256-signed JSON webhooks that sync registrations and activity schedules between ActivityHero…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Activityhero Webhooks](https://apis.io/asyncapis/activityhero/activityhero-webhooks/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Activityhero Authentication](https://apis.io/security/activityhero/activityhero-authentication/)
+- [Activityhero Domain Security](https://apis.io/security/activityhero/activityhero-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://activityhero.com)
+- [Documentation](https://help.activityhero.com/api)
+- [Pricing](https://business.activityhero.com/pricing)
+- [Blog](https://www.activityhero.com/blog/)
+- [Terms of service](https://activityhero.com/pages/terms)
+- [Privacy policy](https://activityhero.com/pages/privacy)
+
+## API Evangelist rating
+
+**Kin Score 29.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 39.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 31.6 |
+
+**Agent readiness 19.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 19.6** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/activityhero/](https://apis.io/providers/activityhero/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ActivityHero: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/activityhero/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
